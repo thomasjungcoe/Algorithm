@@ -32,7 +32,10 @@ export default class Stack<T> {
             this.head = undefined;
             return head.value;
         }
-        const head = this.head as Node<T>;   
+        const head = this.head as Node<T>;
+        this.head = head.prev;
+        // free up the memory for non-garbage collector languages
+        return head.value;
     }
 
     peek(): T | undefined {
